@@ -4,9 +4,10 @@ require("dotenv").config();
 const stripe = require("stripe")(process.env.KEY);
 
 const app = express();
-app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json());
+app.use(cors());
 
 /* app.post("/checkout", async (req, res) => {
   console.log(req.body);
@@ -25,10 +26,13 @@ app.use(express.json());
 
   res.json({ url: session.url });
 }); */
-app.post("/checkout", async (req, res) => {
+app.get("/checkout", async (req, res) => {
   const items = req.body.items;
   console.log(items);
-  res.json({ msg: "recivido" });
+  res.json({ msg: "recibido" });
+});
+app.use("*", (req, res, next) => {
+  res.status(404).json({ msg: "Page not found Daaaa" });
 });
 
-app.listen(4000, () => console.log("Listen on port 4000"));
+app.listen(3001, () => console.log("Listen on port 3001"));
