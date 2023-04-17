@@ -27,7 +27,7 @@ app.use(cors());
 
   res.json({ url: session.url });
 }); */
-app.get("/checkout", async (req, res) => {
+app.post("/checkout", async (req, res) => {
   const items = req.body.items;
   console.log(items);
   res.json({ msg: "recibido" });
