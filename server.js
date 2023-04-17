@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const stripe = require("stripe")(process.env.KEY);
+const port = process.env.PORT || 3001;
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -35,4 +36,4 @@ app.use("*", (req, res, next) => {
   res.status(404).json({ msg: "Page not found Daaaa" });
 });
 
-app.listen(3001, () => console.log("Listen on port 3001"));
+app.listen(port, () => console.log(`Listen on port ${port} `));
