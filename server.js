@@ -10,7 +10,7 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(cors());
 
-/* app.post("/checkout", async (req, res) => {
+app.post("/checkout", async (req, res) => {
   console.log(req.body);
   const items = req.body.items;
   let lineItems = [];
@@ -21,17 +21,18 @@ app.use(cors());
   const session = await stripe.checkout.sessions.create({
     line_items: lineItems,
     mode: "payment",
-    success_url: "http://localhost:3000/success",
-    cancel_url: "http://localhost:3000/cancel",
+    success_url:
+      /* "http://localhost:3000/success" ||  */ "https://coinmarketcap.com",
+    cancel_url: /* "http://localhost:3000/cancel" || */ "https://platzi.com",
   });
 
   res.json({ url: session.url });
-}); */
-app.post("/checkout", async (req, res) => {
+});
+/* app.post("/checkout", async (req, res) => {
   const items = req.body.items;
   console.log(items);
   res.json({ msg: "recibido" });
-});
+}); */
 app.use("*", (req, res, next) => {
   res.status(404).json({ msg: "Page not found Daaaa" });
 });
